@@ -5,8 +5,20 @@
 <audio id="audio" >
 <source src="mp3.mp3" type='audio/mpeg; codecs="mp3"'>
 </audio>
+<button onclick="audio.play()">Play</button><button onclick="audio.pause()">Pause</button><br />
+Start: <input id="startTime" value="60"></input> Length: <input id="timeLength" value="5"></input><button onclick="loop()">Loop</button>
 <script>
 var audio = document.getElementById('audio');
+function loopAudio(startLength, timeLength) {
+    console.log(startTime, timeLength); 
+}
+
+function loop() {
+    var startTime = document.getElementById("startTime").value;
+    var timeLength = document.getElementById("timeLength").value;
+    
+    setInterval(function() {loopAudio(startTime, timeLength);},timeLength*1000);
+}
 </script>
 </body>
 </html>
