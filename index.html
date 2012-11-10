@@ -6,7 +6,10 @@
 <source src="mp3.mp3" type='audio/mpeg; codecs="mp3"'>
 </audio>
 <button onclick="audio.play()">Play</button><button onclick="audio.pause()">Pause</button><br />
-Start: <input id="startTime" value="60"></input> Length: <input id="timeLength" value="5"></input><button onclick="loop()">Loop</button>
+Start: <input id="startTime" value="60"></input> Length: <input id="timeLength" value="5"></input><button onclick="loop()">Loop</button><br />
+<button onclick="setKeyframe()">Keyframe</button>
+<div id="keyframes">
+</div>
 <script>
 var audio = document.getElementById('audio');
 function loopAudio(startLength, timeLength) {
@@ -18,6 +21,20 @@ function loop() {
     var timeLength = document.getElementById("timeLength").value;
     
     setInterval(function() {loopAudio(startTime, timeLength);},timeLength*1000);
+}
+
+function seekTo(time) {
+    player.seekTo(time, true);
+}
+
+function setKeyframe() {
+    var div = document.getElementById("keyframes");
+    seekButton = document.createElement("button");
+    var time = player.getCurrentTime();
+    seekButton.innerHTML = time;
+    seekButton.onclick = function() {seekTo(time)};
+    div.appendChild(seekButton);
+    console.log();    
 }
 </script>
 <div id="player"></div>
